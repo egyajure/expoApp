@@ -14,8 +14,12 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+
+//NEED TO INCLUDE SCREEN TABS HERE
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+//import TabThreeScreen from '../screens/TabThreeScreen';
+
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -58,15 +62,17 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+
+    //this section tells us where the website originally takes us (i think)(worked on computer but not on phone)
+      initialRouteName='TabOne' //This is NOT a name, the aspect of RootTabParamList you want to work with
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
+      }}> //this is where you 'make' the tabs, the tab must exist below to exist as the inital route (it will compile but not actuall work)
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
+          title: 'INDEX IS WHERE YOU ALTER NAVIGATION', //THIS is a name, change as you please
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
@@ -92,6 +98,19 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+     
+     
+    {/*  <BottomTab.Screen
+        name="TabThree"
+        component={TabThreeScreen} //this is a function that is exported in the 'screen' file that MUST BE INCLUDED AT THE TOP OF THIS FILE
+        options= {{
+          title: 'Tab Three',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+
+        />
+      */}
+
     </BottomTab.Navigator>
   );
 }
